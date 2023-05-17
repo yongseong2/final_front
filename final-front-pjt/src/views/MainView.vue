@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>이건 Main View</h1>
+    <h1>MOVIES</h1>
   </div>
 </template>
 
@@ -12,5 +12,10 @@ export default {
 </script>
 
 <style>
+h1 {
+  font-weight: bold;
+
+
+}
 
 </style>
