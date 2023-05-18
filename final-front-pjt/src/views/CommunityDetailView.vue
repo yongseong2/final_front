@@ -18,8 +18,13 @@
       <router-link class="btn btn-primary" :to="{ name: 'CommunityView' }">
         목록으로
       </router-link>
+      <router-link class="btn btn-success" :to="{ name: 'CommuityUpdateView' }">
+        수정
+      </router-link>
       <button class="btn btn-danger" @click="deleteArticle">게시물 삭제</button>
+  
   </div>
+
 </template>
 
 <script>
@@ -35,6 +40,13 @@ export default {
   },
   created(){
     this.getDetail()
+
+  },
+  computed: {
+    token() {
+      return this.$store.state.token
+    },
+    
 
   },
   methods: {
@@ -56,9 +68,14 @@ export default {
         return new Date(date).toLocaleDateString('en-US', options);
     },
     deleteArticle() {
+      axios.create()
+
       axios({
         method:'delete',
         url:`${API_URL}/community/${this.$route.params.id}/`,
+        headers: {
+          Authorization: `Token ${this.token}`
+        }
       })
       .then(()=>{
         alert('게시물이 삭제되었습니다.')

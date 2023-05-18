@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <router-link to="/" class="navbar-brand" href="#">
+        <router-link :to="{name:'MainView'}" class="navbar-brand" href="#">
           <img src="@/assets/movieExample.jpg" alt="Bootstrap" width="30" height="24">
         </router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +24,10 @@
                 Dropdown link
               </a>
               <ul class="dropdown-menu">
-                <li><router-link :class="{'nav-link': true, 'active': $route.name === 'ProfileView'}" :to="{name:'ProfileView'}">PROFILE</router-link></li>
-                <li><router-link :class="{'nav-link': true, 'active': $route.name === 'LoginView'}" :to="{name:'LoginView'}">LOGIN</router-link></li>
+                <li v-if="isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'ProfileView'}" :to="{name:'ProfileView'}">PROFILE</router-link></li>
+                <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'LoginView'}" :to="{name:'LoginView'}">LOGIN</router-link></li>
+                <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'SignUpView'}" :to="{name:'SignUpView'}">SIGNUP</router-link></li>
+                <li v-if="isLogin" @click="logOut"><p :class="{'nav-link': true, 'active': logOut}">LOGOUT</p></li>
               </ul>
             </li>
           </ul>
@@ -36,7 +38,17 @@
 
 <script>
 export default {
-  name:'NavBar'
+  name:'NavBar',
+  methods: {
+    logOut() {
+      this.$store.dispatch('logOut')
+    }
+  },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
+  }
 }
 </script>
 

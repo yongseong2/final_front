@@ -7,6 +7,13 @@ import CommunityView from '@/views/CommunityView'
 import ProfileView from '@/views/ProfileView'
 import LoginView from '@/views/LoginView'
 import CommunityDetailView from '@/views/CommunityDetailView'
+import SignUpView from '@/views/SignUpView'
+import CommuityUpdateView from '@/views/CommuityUpdateView'
+import CommunityCreateView from '@/views/CommunityCreateView'
+
+
+
+
 
 
 
@@ -16,7 +23,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'main',
+    name: 'MainView',
     component: MainView
   },
   {
@@ -49,7 +56,22 @@ const routes = [
     name: 'LoginView',
     component: LoginView
   },
-
+  {
+    path: '/signup',
+    name: 'SignUpView',
+    component: SignUpView
+  },
+  {
+    path: '/update/:id',
+    name: 'CommuityUpdateView',
+    component: CommuityUpdateView
+  },
+  
+  {
+    path: '/create',
+    name: 'CommunityCreateView',
+    component: CommunityCreateView
+  },
 
 
 ]
