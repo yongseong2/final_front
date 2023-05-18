@@ -3,10 +3,10 @@
     <h1>토록 작성 페이지</h1>
     <div class="card">
       <div class="card-header">
-        <input v-model="title" class="form-control" type="text" placeholder="제목"/>
+        <input v-model.trim="title" class="form-control" type="text" placeholder="제목"/>
       </div>
       <div class="card-body">
-        <textarea v-model="content" class="form-control" rows="5" placeholder="내용"></textarea>
+        <textarea v-model.trim="content" class="form-control" rows="5" placeholder="내용"></textarea>
       </div>
       <div class="card-footer">
         <button class="btn btn-success" @click="createArticle">작성</button>

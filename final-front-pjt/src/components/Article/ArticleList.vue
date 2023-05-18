@@ -28,7 +28,6 @@
     </div>
     <router-link :to="{name:'CommunityCreateView'}" class="btn btn-success">게시글 작성</router-link>
     <pageNation/>
-  {{username}}
   </div>
 </template>
 

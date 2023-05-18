@@ -18,10 +18,11 @@
       <router-link class="btn btn-primary" :to="{ name: 'CommunityView' }">
         목록으로
       </router-link>
-      <router-link class="btn btn-success" :to="{ name: 'CommuityUpdateView' }">
+      <router-link v-if="articleDetail?.username === username" class="btn btn-success" :to="{ name: 'CommuityUpdateView' }">
         수정
       </router-link>
-      <button class="btn btn-danger" @click="deleteArticle">게시물 삭제</button>
+      <button v-if="articleDetail?.username === username" class="btn btn-danger" @click="deleteArticle">게시물 삭제</button>
+      {{articleDetail?.is_mine}}
   
   </div>
 
@@ -46,6 +47,9 @@ export default {
     token() {
       return this.$store.state.token
     },
+    username() {
+      return this.$store.state.username
+    }
     
 
   },
@@ -54,6 +58,9 @@ export default {
       axios({
         method:'get',
         url:`${API_URL}/community/${this.$route.params.id}/`,
+        headers: {
+          Authorization : `Token ${this.token}`
+        }
 
       })
       .then(res=>{
