@@ -14,29 +14,40 @@
       </div>
     </div>
       <p>댓글 수: {{ articleDetail?.comment_count }}</p>
-      <p>댓글목록: {{ articleDetail?.comment_set }}</p>
+      <p>댓글목록</p>
+      <ul>
+        <CommentItem
+        v-for="comment in articleDetail?.comment_set"
+        :key="comment.id"
+        :comment="comment"
+        />
+      </ul>
+
       <router-link class="btn btn-primary" :to="{ name: 'CommunityView' }">
         목록으로
       </router-link>
-      <router-link v-if="articleDetail?.username === username" class="btn btn-success" :to="{ name: 'CommuityUpdateView' }">
+      <router-link v-if="articleDetail?.is_mine" class="btn btn-success" :to="{ name: 'CommuityUpdateView' }">
         수정
       </router-link>
-      <button v-if="articleDetail?.username === username" class="btn btn-danger" @click="deleteArticle">게시물 삭제</button>
-      {{articleDetail?.is_mine}}
+      <button v-if="articleDetail?.is_mine" class="btn btn-danger" @click="deleteArticle">게시물 삭제</button>
   
   </div>
 
 </template>
 
 <script>
+import CommentItem from '@/components/Article/CommentItem.vue'
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'CommunityDetailView',
+  components:{
+    CommentItem
+  },
   data(){
     return {
-      articleDetail: null
+      articleDetail: null,
     }
   },
   created(){
@@ -47,11 +58,6 @@ export default {
     token() {
       return this.$store.state.token
     },
-    username() {
-      return this.$store.state.username
-    }
-    
-
   },
   methods: {
     getDetail() {
@@ -67,7 +73,9 @@ export default {
         this.articleDetail = res.data
       })
       .catch(err=>{
+        alert('로그인이 필요한 서비스입니다.')
         console.log(err)
+        this.$router.push({name:'LoginView'})
       })
     },
     formatDate(date) {
@@ -75,8 +83,6 @@ export default {
         return new Date(date).toLocaleDateString('en-US', options);
     },
     deleteArticle() {
-      axios.create()
-
       axios({
         method:'delete',
         url:`${API_URL}/community/${this.$route.params.id}/`,
@@ -91,7 +97,7 @@ export default {
       .catch((err)=>{
         console.log(err)
       })
-    }
+    },
   }
 }
 </script>

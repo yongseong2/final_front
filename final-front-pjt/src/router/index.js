@@ -12,12 +12,6 @@ import CommuityUpdateView from '@/views/CommuityUpdateView'
 import CommunityCreateView from '@/views/CommunityCreateView'
 
 
-
-
-
-
-
-
 Vue.use(VueRouter)
 
 const routes = [

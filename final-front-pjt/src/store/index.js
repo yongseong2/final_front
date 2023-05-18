@@ -16,7 +16,6 @@ export default new Vuex.Store({
   state: {
     articleList: [],
     token: null,
-    username: null,
   },
   getters: {
     isLogin(state) {
@@ -38,12 +37,6 @@ export default new Vuex.Store({
       }
       alert('로그아웃 되었습니다.')
     },
-    SAVE_USERNAME(state, username) {
-      state.username = username
-    },
-    DELETE_USERNAME(state, username) {
-      state.username = username
-    }
   },
   actions: {
 
@@ -86,7 +79,6 @@ export default new Vuex.Store({
       const username = payload.username
       const password = payload.password
 
-      context.commit('SAVE_USERNAME', username)
       axios({
         method:'post',
         url: `${API_URL}/accounts/login/`,
@@ -114,7 +106,6 @@ export default new Vuex.Store({
       })
       .then(()=>{
         context.commit('DELETE_TOKEN', null)
-        context.commit('DELETE_USERNAME', null)
       })
     }
     
