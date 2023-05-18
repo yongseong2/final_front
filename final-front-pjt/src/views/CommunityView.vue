@@ -1,15 +1,20 @@
 <template>
   <div>
-    <h1>이건 Community View</h1>
+    <ArticleList/>
+
   </div>
 </template>
 
 <script>
+import ArticleList from '@/components/Article/ArticleList.vue'
+
 export default {
-  name:'CommunityView'
+  name:'CommunityView',
+  components: {
+    ArticleList
+  }
 }
 </script>
 
 <style>
-
 </style>

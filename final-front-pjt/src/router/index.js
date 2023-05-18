@@ -6,6 +6,9 @@ import MoviesView from '@/views/MoviesView'
 import CommunityView from '@/views/CommunityView'
 import ProfileView from '@/views/ProfileView'
 import LoginView from '@/views/LoginView'
+import CommunityDetailView from '@/views/CommunityDetailView'
+
+
 
 
 Vue.use(VueRouter)
@@ -32,6 +35,11 @@ const routes = [
     component: CommunityView
   },
   {
+    path: '/community/:id',
+    name: 'CommunityDetailView',
+    component: CommunityDetailView
+  },
+  {
     path: '/profile',
     name: 'ProfileView',
     component: ProfileView
@@ -41,6 +49,7 @@ const routes = [
     name: 'LoginView',
     component: LoginView
   },
+
 
 
 ]

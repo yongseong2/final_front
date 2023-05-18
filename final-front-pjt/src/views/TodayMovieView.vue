@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>이건 TodayMovieView</h1>
+
   </div>
 </template>
 
@@ -12,5 +13,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>
