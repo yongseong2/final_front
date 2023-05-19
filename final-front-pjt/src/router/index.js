@@ -41,7 +41,7 @@ const routes = [
     component: CommunityDetailView
   },
   {
-    path: '/profile',
+    path: '/profile/:username',
     name: 'ProfileView',
     component: ProfileView
   },
@@ -60,7 +60,6 @@ const routes = [
     name: 'CommuityUpdateView',
     component: CommuityUpdateView
   },
-  
   {
     path: '/create',
     name: 'CommunityCreateView',

@@ -4,24 +4,18 @@
     <div class="card">
       <div class="card-header">
         <h3>제목: {{ articleDetail?.title }}</h3>
-        <p>작성자: {{ articleDetail?.username }}</p>
+        <router-link :to="{ name: 'ProfileView', params: { username: articleDetail?.username } }">작성자: {{ articleDetail?.username }}</router-link>
       </div>
       <div class="card-body">
         <p>내용: {{ articleDetail?.content }}</p>
       </div>
       <div class="card-footer">
-        <p>작성일자: {{ formatDate(articleDetail?.created_at) }}</p>
+        <p>작성 시간: {{ formatDateTime(articleDetail?.created_at) }}</p>
       </div>
     </div>
       <p>댓글 수: {{ articleDetail?.comment_count }}</p>
       <p>댓글목록</p>
-      <ul>
-        <CommentItem
-        v-for="comment in articleDetail?.comment_set"
-        :key="comment.id"
-        :comment="comment"
-        />
-      </ul>
+      <CommentList/>
 
       <router-link class="btn btn-primary" :to="{ name: 'CommunityView' }">
         목록으로
@@ -36,14 +30,14 @@
 </template>
 
 <script>
-import CommentItem from '@/components/Article/CommentItem.vue'
+import CommentList from '@/components/Article/CommentList.vue'
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'CommunityDetailView',
   components:{
-    CommentItem
+    CommentList
   },
   data(){
     return {
@@ -78,9 +72,15 @@ export default {
         this.$router.push({name:'LoginView'})
       })
     },
-    formatDate(date) {
-        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-        return new Date(date).toLocaleDateString('en-US', options);
+    formatDateTime(datetime) {
+        const dateObj = new Date(datetime)
+        const year = dateObj.getFullYear()
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0')
+        const day = String(dateObj.getDate()).padStart(2, '0')
+        const hours = String(dateObj.getHours()).padStart(2, '0')
+        const minutes = String(dateObj.getMinutes()).padStart(2, '0')
+        
+        return `${year}/${month}/${day} ${hours}:${minutes}`
     },
     deleteArticle() {
       axios({

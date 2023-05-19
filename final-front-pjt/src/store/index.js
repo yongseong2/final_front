@@ -16,6 +16,7 @@ export default new Vuex.Store({
   state: {
     articleList: [],
     token: null,
+    loginedUserName: null,
   },
   getters: {
     isLogin(state) {
@@ -37,6 +38,12 @@ export default new Vuex.Store({
       }
       alert('로그아웃 되었습니다.')
     },
+    SAVE_LOGINED(state, username) {
+      state.loginedUserName = username
+    },
+    DELETE_USERNAME(state, username) {
+      state.loginedUserName = username
+    }
   },
   actions: {
 
@@ -54,11 +61,13 @@ export default new Vuex.Store({
       })
     },
 
-    //acounts
+    //accounts
     signUp(context,payload){
       const username = payload.username
       const password1 = payload.password1
       const password2 = payload.password2
+
+      context.commit('SAVE_LOGINED', username)
 
       axios({
         method:'post',
@@ -72,12 +81,20 @@ export default new Vuex.Store({
       })
       .catch(err=>{
         console.log(err)
+        if (err.response && err.response.status === 400 && err.response.data.username) {
+          context.commit('DELETE_USERNAME', null)
+          alert('중복된 아이디입니다.')
+        } else {
+          alert('오류가 발생했습니다.')
+        }
       })
 
     },
     logIn(context, payload) {
       const username = payload.username
       const password = payload.password
+
+      context.commit('SAVE_LOGINED', username)
 
       axios({
         method:'post',
@@ -106,6 +123,7 @@ export default new Vuex.Store({
       })
       .then(()=>{
         context.commit('DELETE_TOKEN', null)
+        context.commit('DELETE_USERNAME', null)
       })
     }
     

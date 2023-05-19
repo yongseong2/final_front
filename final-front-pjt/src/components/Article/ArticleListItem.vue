@@ -3,8 +3,8 @@
         <tr>
             <th scope="row">{{article.id}}</th>
             <td @click='goToDetail(article.id)'>{{article.title}}</td>
-            <td>{{article.username}}</td>
-            <td>{{formatDate(article.created_at)}}</td>
+            <td><router-link :to="{ name: 'ProfileView', params: { username: article.username } }">{{article.username}}</router-link></td>
+            <td>{{formatDateTime(article.created_at)}}</td>
         </tr>
     </tbody>
 </template>
@@ -16,14 +16,19 @@ export default {
         article: Object,
     },
     methods: {
-        formatDate(date) {
-            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            return new Date(date).toLocaleDateString('en-US', options);
-    },
+        formatDateTime(datetime) {
+        const dateObj = new Date(datetime)
+        const year = dateObj.getFullYear()
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0')
+        const day = String(dateObj.getDate()).padStart(2, '0')
+        const hours = String(dateObj.getHours()).padStart(2, '0')
+        const minutes = String(dateObj.getMinutes()).padStart(2, '0')
+        
+        return `${year}/${month}/${day} ${hours}:${minutes}`
+        },
         goToDetail(articleId) {
             this.$router.push({ name: 'CommunityDetailView', params: { id: articleId } })
-        }
-    
+        },
     }
 }
 </script>

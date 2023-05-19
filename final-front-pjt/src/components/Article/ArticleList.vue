@@ -12,11 +12,11 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">작성자</th>
-                                <th scope="col">작성한 날짜</th>
+                                <th scope="col">작성 시간</th>
                             </tr>
                         </thead>
                             <ArticleListItem
-                            v-for="article in articles"
+                            v-for="article in paginatedArticles"
                             :key = article.id
                             :article = article
                             />
@@ -27,7 +27,11 @@
       </div>
     </div>
     <router-link :to="{name:'CommunityCreateView'}" class="btn btn-success">게시글 작성</router-link>
-    <pageNation/>
+    <pageNation
+    :currentPage="currentPage" 
+    :totalPages="totalPages" 
+    @pageChanged="changePage"
+    />
   </div>
 </template>
 
@@ -39,11 +43,13 @@ export default {
   name:'ArticleList',
   components: {
     ArticleListItem,
-    pageNation
+    pageNation,
   },
   data() {
     return {
-      articleList: []
+      articleList: [],
+      currentPage: 1,
+      itemsPerPage: 10
     }
   },
   created() {
@@ -53,6 +59,10 @@ export default {
     getArticles() {
       this.$store.dispatch('getArticles')
     },
+    changePage(page) {
+      this.currentPage = page
+    },
+
   },
   computed: {
     articles() {
@@ -60,8 +70,17 @@ export default {
     },
     username() {
       return this.$store.state.username
-    }
-  }
+    },
+    paginatedArticles() {
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage
+      const endIndex = startIndex + this.itemsPerPage
+      return this.articles.slice(startIndex, endIndex)
+    },
+    totalPages() {
+      return Math.ceil(this.articles.length / this.itemsPerPage)
+    },
+  },
+
 }
 </script>
 

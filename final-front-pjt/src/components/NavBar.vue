@@ -19,20 +19,27 @@
             <li class="nav-item">
               <router-link :class="{'nav-link': true, 'active': $route.name === 'CommunityView'}" :to="{name:'CommunityView'}">COMMUNITY</router-link>
             </li>
+            <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'LoginView'}" :to="{name:'LoginView'}">LOGIN</router-link></li>
+            <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'SignUpView'}" :to="{name:'SignUpView'}">SIGNUP</router-link></li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link
+              <a v-if="isLogin" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ACCOUNT
               </a>
               <ul class="dropdown-menu">
-                <li v-if="isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'ProfileView'}" :to="{name:'ProfileView'}">PROFILE</router-link></li>
-                <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'LoginView'}" :to="{name:'LoginView'}">LOGIN</router-link></li>
-                <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'SignUpView'}" :to="{name:'SignUpView'}">SIGNUP</router-link></li>
+                <li v-if="isLogin">
+                  <router-link :class="{'nav-link': true, 'active': $route.name === 'ProfileView'}" :to="{ name: 'ProfileView', params: { username: loginedUserName } }">MY PROFILE</router-link>
+                </li>
+
+                <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'LoginView'}" :to="{name:'LoginView'}">LOGIN</router-link></li>                <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'SignUpView'}" :to="{name:'SignUpView'}">SIGNUP</router-link></li>
+                
+
                 <li v-if="isLogin" @click="logOut"><p :class="{'nav-link': true, 'active': logOut}">LOGOUT</p></li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
+
     </nav>
 </template>
 
@@ -47,6 +54,9 @@ export default {
   computed: {
     isLogin() {
       return this.$store.getters.isLogin
+    },
+    loginedUserName() {
+      return this.$store.state.loginedUserName
     }
   }
 }

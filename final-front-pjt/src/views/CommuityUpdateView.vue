@@ -3,11 +3,11 @@
     <h1>수정 페이지</h1>
     <div class="card">
       <div class="card-header">
-        <input v-model="updatedTitle" class="form-control" type="text" placeholder="제목" />
+        <input v-model.trim="updatedTitle" class="form-control" type="text" placeholder="제목" />
         <p>작성자: {{ articleDetail?.username }}</p>
       </div>
       <div class="card-body">
-        <textarea v-model="updatedContent" class="form-control" rows="5" placeholder="내용"></textarea>
+        <textarea v-model.trim="updatedContent" class="form-control" rows="5" placeholder="내용"></textarea>
       </div>
       <div class="card-footer">
         <button class="btn btn-success" @click="updateArticle">수정 완료</button>
