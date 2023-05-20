@@ -49,7 +49,6 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-
                     <img v-if="imgSrc===null"  src="@/assets/Defaultprofile.png" class="rounded-circle">
                     <img v-else :src="getImageUrl(imgSrc)" class="rounded-circle">
                   </a>
@@ -101,11 +100,17 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <p class="form-control-label" for="input-username">게시물</p>
+                        <p class="form-control-label" for="input-username">작성한 게시물</p>
                         <ul>
                           <li v-for="article in articles" :key="article.id">
                             {{article.title}}
                           </li>
+                        </ul>
+                        <p class="form-control-label" for="input-username">작성한 댓글</p>
+                        <ul>
+                          <li v-for="comment in comments" :key="comment.id">
+                            {{ comment.content }}
+                            </li>
                         </ul>
                       </div>
                     </div>

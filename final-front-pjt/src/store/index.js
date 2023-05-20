@@ -10,7 +10,9 @@ const API_URL = 'http://127.0.0.1:8000'
 
 export default new Vuex.Store({
   plugins: [
-    createPersistedState()
+    createPersistedState({
+      paths: ['token', 'loginedUserName']
+    })
 
   ],
   state: {
