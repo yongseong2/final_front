@@ -35,7 +35,8 @@
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello {{ username }}</h1>
-            <a href="#!" class="btn btn-info">Edit profile image</a>
+            <!-- <a href="#!" class="btn btn-info" @click="changeProfileImg">Edit profile image</a> -->
+            <input type="file" @change="uploadImage" accept="image/*" />
           </div>
         </div>
       </div>
@@ -142,6 +143,7 @@ export default {
       date_joined: null,
       is_mine: null,
       backgroundImage: "https://images.unsplash.com/photo-1682332300122-7cfddb1576c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+      file: '',
     }
   },
   computed: {
@@ -187,7 +189,25 @@ export default {
         const day = String(dateObj.getDate()).padStart(2, '0')
         
         return `${year}/${month}/${day}`
-        },
+    },
+    uploadImage(event) {
+      const file = event.target.files[0]
+      const formData = new FormData()
+      formData.append('img', file)
+      axios
+        .put(`${API_URL}/accounts/user/${this.$route.params.username}/`, formData, {
+          headers: {
+            Authorization: `Token ${this.token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+        .then(response => {
+          this.imgSrc = response.data.img
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
   }
 }
 </script>
