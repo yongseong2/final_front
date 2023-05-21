@@ -1,11 +1,7 @@
 <template>
-  <div>
-    <p>
-      {{popularMovie.title}}
-    </p>
+
     <img :src="imgSrc" alt="">
     
-  </div>
   
 </template>
 

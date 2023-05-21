@@ -6,12 +6,16 @@
     :key="popularMovie.id"
     :popular-movie = popularMovie
     />
+
+  
   </div>
   
 </template>
 
 <script>
 import PopularMovieItem from '@/components/Movies/PopularMovieItem.vue'
+
+
 import axios from 'axios'
 const API_KEY = 'eb6632a590213714114bb61c304b7e9c'
 
@@ -19,7 +23,9 @@ const API_KEY = 'eb6632a590213714114bb61c304b7e9c'
 export default {
   name:'PopularMovie',
   components:{
-    PopularMovieItem
+    PopularMovieItem,
+
+    
   },
   data() {
     return {
@@ -47,5 +53,7 @@ export default {
 </script>
 
 <style>
+
+
 
 </style>
