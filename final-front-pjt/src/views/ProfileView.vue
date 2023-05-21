@@ -35,8 +35,8 @@
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello {{ username }}</h1>
-            <!-- <a href="#!" class="btn btn-info" @click="changeProfileImg">Edit profile image</a> -->
-            <input type="file" @change="uploadImage" accept="image/*" />
+            <a v-if="is_mine" href="#!" class="btn btn-info" @click="openFileInput">Edit profile image</a>
+            <input ref="fileInput" type="file" style="display: none" @change="uploadImage" accept="image/*" />
           </div>
         </div>
       </div>
@@ -208,6 +208,9 @@ export default {
           console.error(error);
         });
     },
+    openFileInput() {
+      this.$refs.fileInput.click()
+    }
   }
 }
 </script>
