@@ -1,6 +1,12 @@
 <template>
-
-    <img :src="imgSrc" alt="">
+  <div class="col-md-3">
+    <!-- <div class="card">
+        <div class="card-img">
+          <img :src="imgSrc" alt="">
+        </div>
+        <div class="card-img-overlay">Slide 1</div>
+      </div> -->
+  </div>
     
   
 </template>

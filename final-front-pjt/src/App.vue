@@ -20,13 +20,19 @@ export default {
 <style>
 #app {
   font-family: 'Nanum Gothic', sans-serif;
+  height: 100vh;
+  margin:0;
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: whitesmoke
 }
 
 .nav-link {
   font-size: 20px;
   font-weight: bold;
 }
-
 
 
 </style>
