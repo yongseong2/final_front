@@ -32,6 +32,7 @@
     :totalPages="totalPages" 
     @pageChanged="changePage"
     />
+
   </div>
 </template>
 
@@ -85,10 +86,13 @@ export default {
 </script>
 
 <style>
+
+
 .card {
     border: none;
     margin-bottom: 24px;
     -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
     box-shadow: 0 0 13px 0 rgba(68, 68, 68, 0.44);
 }
+
 </style>

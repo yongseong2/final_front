@@ -16,14 +16,14 @@
       <p>댓글 수: {{ articleDetail?.comment_count }}</p>
       <p>댓글목록</p>
       <CommentList/>
-
-      <router-link class="btn btn-primary" :to="{ name: 'CommunityView' }">
+      <!-- <router-link :to="{name:'CommunityCreateView'}" class="btn btn-outline-light">게시글 작성</router-link> -->
+      <router-link class="btn btn-outline-light" :to="{ name: 'CommunityView' }">
         목록으로
       </router-link>
-      <router-link v-if="articleDetail?.is_mine" class="btn btn-success" :to="{ name: 'CommuityUpdateView' }">
+      <router-link v-if="articleDetail?.is_mine" class="btn btn-outline-light" :to="{ name: 'CommuityUpdateView' }">
         수정
       </router-link>
-      <button v-if="articleDetail?.is_mine" class="btn btn-danger" @click="deleteArticle">게시물 삭제</button>
+      <button v-if="articleDetail?.is_mine" class="btn btn-outline-light" @click="deleteArticle">게시물 삭제</button>
   
   </div>
 

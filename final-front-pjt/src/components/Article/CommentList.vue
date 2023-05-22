@@ -11,7 +11,7 @@
       />
     </ul>
     <input v-model.trim="newComment" type="text">
-    <button @click="createComment">댓글 작성</button>
+    <button @click="createComment" class="btn btn-outline-light">댓글 작성</button>
   </div>
 </template>
 

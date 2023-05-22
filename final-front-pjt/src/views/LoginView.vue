@@ -1,36 +1,39 @@
 <template>
-  <div>
-    <h1>LogIn Page</h1>
+  <div class="login-box">
+    <h2>Login</h2>
     <form @submit.prevent="logIn">
-      <label for="username">username : </label>
-      <input type="text" id="username" v-model.trim="username"><br>
-
-      <label for="password"> password : </label>
-      <input type="password" id="password" v-model.trim="password"><br>
-
-      <input type="submit" value="logIn">
+      <div class="user-box">
+        <input type="text" name="" required="" v-model.trim="username">
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="" required="" v-model.trim="password">
+        <label>Password</label>
+      </div>
+      <div class="button-container">
+        <button @click="logIn" style="
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        ">
+          <a href="#" class="submit-button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </a>
+        </button>
+        <router-link :to="{name: 'SignUpView'}" class="signup-link">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Sign Up
+        </router-link>
+      </div>
     </form>
-
-    <div class="login-box">
-      <h2>Login</h2>
-      <form @submit.prevent="logIn">
-        <div class="user-box">
-          <input type="text" name="" required="" v-model.trim="username">
-          <label>Username</label>
-        </div>
-        <div class="user-box">
-          <input type="password" name="" required="" v-model.trim="password">
-          <label>Password</label>
-        </div>
-        <a href="#">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Submit
-        </a>
-      </form>
-    </div>
   </div>
 </template>
 
@@ -120,7 +123,7 @@ body {
 .login-box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: #03e9f4;
+  color: rgb(203, 229, 231);
   font-size: 12px;
 }
 
@@ -128,7 +131,7 @@ body {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
-  color: #03e9f4;
+  color: rgb(203, 229, 231);
   font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
@@ -139,13 +142,13 @@ body {
 }
 
 .login-box a:hover {
-  background: #03e9f4;
+  background: rgb(203, 229, 231);
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 5px #03e9f4,
-              0 0 25px #03e9f4,
-              0 0 50px #03e9f4,
-              0 0 100px #03e9f4;
+  box-shadow: 0 0 5px rgb(203, 229, 231),
+              0 0 25px rgb(203, 229, 231),
+              0 0 50px rgb(203, 229, 231),
+              0 0 100px rgb(203, 229, 231);
 }
 
 .login-box a span {
@@ -158,7 +161,7 @@ body {
   left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #03e9f4);
+  background: linear-gradient(90deg, transparent, rgb(203, 229, 231));
   animation: btn-anim1 1s linear infinite;
 }
 
@@ -176,7 +179,7 @@ body {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #03e9f4);
+  background: linear-gradient(180deg, transparent, white);
   animation: btn-anim2 1s linear infinite;
   animation-delay: .25s
 }
@@ -195,7 +198,7 @@ body {
   right: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, #03e9f4);
+  background: linear-gradient(270deg, transparent, white);
   animation: btn-anim3 1s linear infinite;
   animation-delay: .5s
 }
@@ -214,7 +217,7 @@ body {
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #03e9f4);
+  background: linear-gradient(360deg, transparent, white);
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
 }
@@ -226,6 +229,17 @@ body {
   50%,100% {
     bottom: 100%;
   }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit-button {
+  margin-bottom: 20px;
 }
 
 
