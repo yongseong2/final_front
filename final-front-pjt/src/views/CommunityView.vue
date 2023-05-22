@@ -1,5 +1,5 @@
 <template>
-  <div id="Artilce">
+  <div id="Article">
     <ArticleList/>
 
   </div>
@@ -16,8 +16,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
   #Article {
   background-color: rgb(26, 25, 25);
   background-size: cover;

@@ -11,7 +11,7 @@
 </template>
 
 
-<script scoped>
+<script>
 import Splitting from 'splitting';
 
 export default {
@@ -27,11 +27,11 @@ export default {
 @import "@/assets/main.scss";
 
 
-  .vertical-center {
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  // .vertical-center {
+  //   height: 80vh;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
 
 </style>
