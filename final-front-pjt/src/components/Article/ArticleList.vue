@@ -4,15 +4,15 @@
     <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body bg-dark">
                 <div class="table-responsive project-list">
-                      <table class="table project-table table-centered table-nowrap">
+                      <table class="table table-dark table-hover project-table table-centered table-nowrap">
                         <thead>
-                            <tr>
+                            <tr >
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">작성자</th>
-                                <th scope="col">작성 시간</th>
+                                <th scope="col" class=justify-content-end>작성 시간</th>
                             </tr>
                         </thead>
                             <ArticleListItem
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <router-link :to="{name:'CommunityCreateView'}" class="btn btn-success">게시글 작성</router-link>
+    <router-link :to="{name:'CommunityCreateView'}" class="btn btn-outline-light">게시글 작성</router-link>
     <pageNation
     :currentPage="currentPage" 
     :totalPages="totalPages" 

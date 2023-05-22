@@ -1,33 +1,7 @@
 <template>
-  <!-- <div>
-    <div v-if="imgSrc===null" >
-      <img  src="@/assets/Defaultprofile.png" alt="프로필 사진" class="profileImg"/>
-    </div>
-    <div v-else>
-      <img :src="getImageUrl(imgSrc)" alt="프로필 사진" class="profileImg"/>
-    </div>
-    <div>
-      <h3>{{ username }}</h3>
-    </div>
-    <div>
-      <p>가입일: {{ date_joined }}</p>
-      <h2>게시물</h2>
-      <p>게시물 수: {{ articles_count }}</p>
-      <ul>
-        <li v-for="article in articles" :key="article.id">{{ article.title }}</li>
-      </ul>
-    </div>
-    <div>
-      <h2>댓글</h2>
-      <p>댓글 수: {{ comments_count }}</p>
-      <ul>
-        <li v-for="comment in comments" :key="comment.id">{{ comment.content }}</li>
-      </ul>
-    </div>
-  </div> -->
-  <div class="main-content">
+  <div class="main-content" id="profilepage">
     <!-- Header -->
-    <div class="header" :style="{ backgroundImage: `url(${backgroundImage})` }">
+    <div class="header" :style="{ backgroundImage: `url(${getImageUrl(background_img)}` }">
       <!-- Mask -->
       <span class="mask bg-gradient-default opacity-8"></span>
       <!-- Header container -->
@@ -50,8 +24,8 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img v-if="imgSrc===null"  src="@/assets/Defaultprofile.png" class="rounded-circle">
-                    <img v-else :src="getImageUrl(imgSrc)" class="rounded-circle">
+                    <img :src="getImageUrl(imgSrc)" class="rounded-circle">
+                    <!-- <img src="http://127.0.0.1:8000/media/default_profile.png" class="rounded-circle"> -->
                   </a>
                 </div>
               </div>
@@ -142,8 +116,9 @@ export default {
       imgSrc: null,
       date_joined: null,
       is_mine: null,
-      backgroundImage: "https://images.unsplash.com/photo-1682332300122-7cfddb1576c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
+      background_img: null,
       file: '',
+      
     }
   },
   computed: {
@@ -173,6 +148,7 @@ export default {
           this.imgSrc = res.data.img
           this.date_joined = res.data.date_joined
           this.is_mine = res.data.is_mine
+          this.background_img = res.data.background_img
         })
         .catch(() => {
           alert('로그인이 필요한 서비스입니다.')
@@ -192,6 +168,7 @@ export default {
     },
     uploadImage(event) {
       const file = event.target.files[0]
+    
       const formData = new FormData()
       formData.append('img', file)
       axios
@@ -216,6 +193,15 @@ export default {
 </script>
 
 <style scoped>
+#profilepage {
+  background-color: rgb(26, 25, 25);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: whitesmoke
+}
+
+
 :root {
   --blue: #5e72e4;
   --indigo: #5603ad;

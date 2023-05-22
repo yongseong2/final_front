@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1>POPULAR MOVIES</h1>
+  <div id="movie" class="mt-3">
+    <h1 class="movieTitle">POPULAR MOVIES</h1>
     <PopularMovie/>
 
-    <h1>NOW PLAYING</h1>
+    <h1 class="movieTitle">NOW PLAYING</h1>
     <NowPlaying/>
   </div>
 </template>
@@ -24,5 +24,17 @@ export default {
 </script>
 
 <style>
+
+#movie {
+  background-color: rgb(26, 25, 25);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: whitesmoke
+}
+
+.movieTitle{
+  font-size: 3.5rem;
+}
 
 </style>

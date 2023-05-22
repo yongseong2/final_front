@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Artilce">
     <ArticleList/>
 
   </div>
@@ -17,4 +17,12 @@ export default {
 </script>
 
 <style>
+
+  #Article {
+  background-color: rgb(26, 25, 25);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: whitesmoke
+}
 </style>

@@ -22,7 +22,7 @@ export default {
   font-family: 'Nanum Gothic', sans-serif;
   height: 100vh;
   margin:0;
-  background-color: black;
+  background-color: rgb(26, 25, 25);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

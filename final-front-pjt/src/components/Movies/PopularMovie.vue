@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid text-center my-3 w-100">
+  <div class="popular-movie container-fluid text-center my-3 w-100">
     <div class="row  my-auto justify-content-center">
-      <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div id="popularcarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner" role="listbox">
           <div v-for="(movie, index) in popularMovies" :movie_id="movie.id" :key="index" :class="['carousel-item', { 'active': index === 0 }]">
             <div class="col-md-3">
@@ -16,10 +16,10 @@
             </div>
           </div>
         </div>
-        <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+        <a class="carousel-control-prev bg-transparent w-aut" href="#popularcarousel" role="button" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         </a>
-        <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+        <a class="carousel-control-next bg-transparent w-aut" href="#popularcarousel" role="button" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </a>
       </div>
@@ -72,7 +72,7 @@ export default {
         let items = Array.from(this.$el.querySelectorAll('.carousel .carousel-item'))
       
         items.forEach((el)=>{
-          const minPerSlide = 4
+          const minPerSlide = 6
           let next = el.nextElementSibling
           for (let i= 1; i<minPerSlide; i++) {
             if (!next) {
@@ -83,9 +83,7 @@ export default {
             next = next.nextElementSibling
           }
         })
-
       })
-
     }
   },
 };
