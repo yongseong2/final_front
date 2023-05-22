@@ -1,21 +1,32 @@
 <template>
-  <div class="vertical-center">
-    <div class="text-center">
-      <h1>My Star</h1>
-      <p>저희 영화 추천 사이트에 오신걸 환영합니다.</p>
-      <p>자신만의 최애배우를 챌린지를 통해 선택하고 추천영화를 받아보세요!</p>
+  <div class="container">
+    <div data-splitting class="headline headline--float">
+      MOVIE 101
     </div>
+    <div class="subtext">
+      자신만의 최애배우를 챌린지를 통해 선택하고 추천영화를 받아보세요!
+    </div>
+    <i class="fa-regular fa-popcorn fa-beat"></i>
   </div>
 </template>
 
-<script>
+
+<script scoped>
+import Splitting from 'splitting';
+
 export default {
-  name:'TodayMovieView'
+  name:'TodayMovieView',
+  mounted() {
+    Splitting()
+  }
 
 }
 </script>
 
-<style>
+<style lang="scss">
+@import "@/assets/main.scss";
+
+
   .vertical-center {
     height: 80vh;
     display: flex;

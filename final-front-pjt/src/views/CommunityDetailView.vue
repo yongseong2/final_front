@@ -24,7 +24,6 @@
         수정
       </router-link>
       <button v-if="articleDetail?.is_mine" class="btn btn-outline-light" @click="deleteArticle">게시물 삭제</button>
-  
   </div>
 
 </template>
