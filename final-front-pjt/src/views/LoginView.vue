@@ -11,13 +11,13 @@
         <label>Password</label>
       </div>
       <div class="button-container">
-        <button @click="logIn" style="
+        <button style="
         background: none;
         border: none;
         color: inherit;
         cursor: pointer;
         ">
-          <a href="#" class="submit-button">
+          <a href="#" @click="logIn" class="submit-button">
             <span></span>
             <span></span>
             <span></span>

@@ -15,13 +15,14 @@
         <label>Password confirmation</label>
       </div>
       <div class="button-container">
-        <button @click="signUp" style="
+        <button 
+        style="
         background: none;
         border: none;
         color: inherit;
         cursor: pointer;
         ">
-          <a href="#" class="submit-button">
+          <a href="#" @click="signUp" class="submit-button">
             <span></span>
             <span></span>
             <span></span>
