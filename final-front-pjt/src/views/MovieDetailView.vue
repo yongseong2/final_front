@@ -1,7 +1,7 @@
 <template>
 
 <div class="container d-flex mt-3 justify-content-center">
-  <section class="container movie-details d-flex mt-3 justify-content-center row" id='movieall'>
+  <section class="container movie-details d-flex mt-3 justify-content-between" id='movieall'>
       <div class="movie-img" :style="{ 'background-image': `url(${this.poster})` }">
         <div class="movie-info">
             <span class="movie-name">{{ movie.title }}</span>
@@ -12,44 +12,46 @@
               <span>MOVIE 101 유저 평점 :</span> {{ movie.rate_avg }}
           </div>
           <div class="d-flex justify-content-center">
-            <YoutubeContent
+            <!-- <YoutubeContent
             :movie-title="movie.title"
-            />
+            /> -->
+            <img src="@/assets/test.png" alt="">
           </div>
           <div class="post-line">
             <span>Director:</span> {{ director }}<br/>
             <span>Actor:</span>{{ actors[0] }}, {{ actors[1] }}, {{ actors[2] }}<br/>  
           </div>
-
           <div>
             {{ movie.overview }}
           </div>
+        </div>
       </div>
-  </div>
 
-      <div class="d-flex justify-content-center">
-        <ReviewList
-        :movie-review="movie.review_set"
-        
-        
-        />
+      <div class="movie-img">
+        <div class="movie-info">
+            <span class="movie-name">REVIEWS</span>
+          <div class="post-line">
+            <ReviewList
+            :movie-review="movie.review_set"
+            />
+          </div>
+        </div>
       </div>
   </section>
-
 </div>
 </template>
 
 <script>
 
 import axios from 'axios'
-import YoutubeContent from '@/components/Movies/YoutubeContent.vue'
+// import YoutubeContent from '@/components/Movies/YoutubeContent.vue'
 import ReviewList from '@/components/Movies/ReviewList.vue'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name:'MovieDetailView',
   components: {
-    YoutubeContent,
+    // YoutubeContent,
     ReviewList,
   },
   data() {
@@ -136,6 +138,14 @@ export default {
   letter-spacing: 1.2px;
 }
 
+#review-list{
+  position: relative;
+  z-index: 1;
+  margin: 20px;
+  letter-spacing: 1.2px;
+  
+}
+
 
 .movie-details .movie-info { 
     box-sizing: border-box; 
@@ -155,7 +165,17 @@ export default {
 .movie-details .post-line { 
     padding: 15px 0; }
 
-
+@media (max-width: 768px) {
+  .movie-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .movie-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+}
 
 
 

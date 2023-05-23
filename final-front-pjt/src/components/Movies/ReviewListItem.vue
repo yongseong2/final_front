@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="ordered-nav--link">
     {{ review.review }}
     <div>작성자: {{ review.username }}</div>
     <div>작성 시간: {{ formatDateTime(review.created_at) }}</div>
@@ -28,6 +28,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang='scss'>
 
 </style>
