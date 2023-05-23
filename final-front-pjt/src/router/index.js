@@ -87,11 +87,34 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next)=> {
   const isLoggedIn = store.getters.isLogin
-  if (isLoggedIn && (to.name == 'LoginView' || to.name === 'SignUpView')) {
+  if (isLoggedIn && (
+    to.name === 'LoginView' || 
+    to.name === 'SignUpView'
+    )) {
     next({ name: 'MainView' })
   } else {
     next()
   }
 })
+
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = store.getters.isLogin;
+  const requiresAuth = [
+    'TodayMovieView',
+    'MoviesView',
+    'CommunityView',
+    'CommunityDetailView',
+    'ProfileView',
+    'CommuityUpdateView'
+  ];
+
+  if (requiresAuth.includes(to.name) && !isLoggedIn) {
+    // 로그인이 필요한 페이지에 접근 시
+    alert('로그인이 필요한 서비스입니다.');
+    next({ name: 'LoginView' }); // 로그인 페이지로 이동
+  } else {
+    next();
+  }
+});
 
 export default router
