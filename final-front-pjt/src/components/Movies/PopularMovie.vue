@@ -3,15 +3,16 @@
     <div class="row  my-auto justify-content-center">
       <div id="popularcarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner" role="listbox">
-          <div v-for="(movie, index) in popularMovies" :movie_id="movie.id" :key="index" :class="['carousel-item', { 'active': index === 0 }]">
+          <div v-for="(movie, index) in popularMovies" :key="index" :class="['carousel-item', { 'active': index === 0 }]">
             <div class="col-md-3">
               <div class="card">
                 <div class="card-img">
                     <img class="movieImg img-fluid" :src="movie.imageUrl" alt="">
                 </div>
-                  <a href="https://chat.openai.com/">
-                    <div class="card-img-overlay fs-2">{{ movie.id }}</div>
-                  </a>
+                  <router-link :to="{name:'MovieDetailView', params: { movieid: movie?.id }}">
+                    <div class="card-img-overlay fs-2"></div>
+                  </router-link>
+                  <!-- <router-link :to="{ name: 'ProfileView', params: { username: articleDetail?.username } }"> -->
               </div>
             </div>
           </div>
@@ -63,6 +64,7 @@ export default {
           const popularMovies = res.data.results.map((movie) => ({
             imageUrl: `https://image.tmdb.org/t/p/original${movie.poster_path}`, // 이미지 URL 설정 필요
             title: movie.title, // 영화 제목 설정 필요
+            id: movie.id
           }));
           this.popularMovies = popularMovies;
         });

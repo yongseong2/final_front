@@ -20,7 +20,6 @@ export default {
 <style>
 #app {
   font-family: 'Nanum Gothic', sans-serif;
-  height: 100vh;
   margin:0;
   background-color: rgb(26, 25, 25);
   background-size: cover;

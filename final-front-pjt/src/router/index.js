@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
+
 import MainView from '@/views/MainView'
 import TodayMovieView from '@/views/TodayMovieView'
 import MoviesView from '@/views/MoviesView'
@@ -10,6 +12,9 @@ import CommunityDetailView from '@/views/CommunityDetailView'
 import SignUpView from '@/views/SignUpView'
 import CommuityUpdateView from '@/views/CommuityUpdateView'
 import CommunityCreateView from '@/views/CommunityCreateView'
+import MovieDetailView from '@/views/MovieDetailView'
+
+
 
 
 Vue.use(VueRouter)
@@ -65,6 +70,11 @@ const routes = [
     name: 'CommunityCreateView',
     component: CommunityCreateView
   },
+  {
+    path: '/movie/:movieid',
+    name: 'MovieDetailView',
+    component: MovieDetailView
+  },
 
 
 ]
@@ -73,6 +83,15 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next)=> {
+  const isLoggedIn = store.getters.isLogin
+  if (isLoggedIn && (to.name == 'LoginView' || to.name === 'SignUpView')) {
+    next({ name: 'MainView' })
+  } else {
+    next()
+  }
 })
 
 export default router

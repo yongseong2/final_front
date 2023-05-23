@@ -37,8 +37,10 @@ export default new Vuex.Store({
       state.token = token
       if (router.currentRoute.name !== 'MainView') {
         router.push({name:'MainView'})
+        window.location.reload()
       }
       alert('로그아웃 되었습니다.')
+      
     },
     SAVE_LOGINED(state, username) {
       state.loginedUserName = username

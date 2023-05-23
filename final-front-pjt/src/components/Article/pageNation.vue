@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-3">
+  <div class="pt-3" id="pagenation">
     <ul class="pagination justify-content-end mb-0">
       <li class="page-item" :class="{ disabled: currentPage === 1 }">
         <a class="page-link" href="#" tabindex="-1" aria-disabled="true" @click="changePage(currentPage - 1)">Previous</a>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name:'pageNation',
+  name:'PageNation',
   props: {
     currentPage: {
       type: Number,

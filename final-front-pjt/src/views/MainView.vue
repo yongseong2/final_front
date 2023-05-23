@@ -1,12 +1,11 @@
 <template>
-  <div class="container">
+  <div class="container" id='mainview'>
     <div data-splitting class="headline headline--float">
       MOVIE 101
     </div>
     <div class="subtext">
       자신만의 최애배우를 챌린지를 통해 선택하고 추천영화를 받아보세요!
     </div>
-    <i class="fa-regular fa-popcorn fa-beat"></i>
   </div>
 </template>
 

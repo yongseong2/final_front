@@ -3,18 +3,21 @@
     <div class="row  my-auto justify-content-center">
       <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner" role="listbox">
-          <div v-for="(movie, index) in nowPlayings" :movie_id="movie.id" :key="index" :class="['carousel-item', { 'active': index === 0 }]">
+
+          <div v-for="(movie, index) in nowPlayings" :key="index" :class="['carousel-item', { 'active': index === 0 }]">
             <div class="col-md-3">
               <div class="card">
                 <div class="card-img">
                     <img class="movieImg img-fluid" :src="movie.imageUrl" alt="">
                 </div>
-                  <a href="https://chat.openai.com/">
-                    <div class="card-img-overlay fs-2">{{ movie.id }}</div>
-                  </a>
+                
+                  <router-link :to="{name:'MovieDetailView', params: { movieid: movie?.id }}">
+                    <div class="card-img-overlay fs-2"></div>
+                  </router-link>
               </div>
             </div>
           </div>
+
         </div>
         <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -62,7 +65,8 @@ export default {
         .then((res) => {
           const nowPlayings = res.data.results.map((movie) => ({
             imageUrl: `https://image.tmdb.org/t/p/original${movie.poster_path}`, // 이미지 URL 설정 필요
-            title: movie.title, // 영화 제목 설정 필요
+            title: movie.title,
+            id: movie.id
           }));
           this.nowPlayings = nowPlayings;
         });

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5" id="articlelist">
     <h1>영화 토론 게시판</h1>
     <div class="row">
     <div class="col-lg-12">
@@ -27,7 +27,7 @@
       </div>
     </div>
     <router-link :to="{name:'CommunityCreateView'}" class="btn btn-outline-light">게시글 작성</router-link>
-    <pageNation
+    <PageNation
     :currentPage="currentPage" 
     :totalPages="totalPages" 
     @pageChanged="changePage"
@@ -38,13 +38,13 @@
 
 <script>
 import ArticleListItem from '@/components/Article/ArticleListItem.vue'
-import pageNation from './pageNation.vue'
+import PageNation from '@/components/Article/PageNation'
 
 export default {
   name:'ArticleList',
   components: {
     ArticleListItem,
-    pageNation,
+    PageNation,
   },
   data() {
     return {
@@ -85,13 +85,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 .card {
     border: none;
     margin-bottom: 24px;
     -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
     box-shadow: 0 0 13px 0 rgba(68, 68, 68, 0.44);
+}
+
+#articlelist{
+  background-color: rgb(26, 25, 25);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: whitesmoke
 }
 
 </style>
