@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello {{ username }}</h1>
-            <a v-if="is_mine" href="#!" class="btn btn-info" @click="openFileInput">Edit profile image</a>
+            <a v-if="is_mine" href="#!" class="btn btn-info" @click="openFileInput">프로필 사진 수정</a>
             <input ref="fileInput" type="file" style="display: none" @change="uploadImage" accept="image/*" />
           </div>
         </div>
@@ -67,6 +67,7 @@
               <div class="row align-items-center">
                 <div class="col-8">
                   <h3 class="mb-0">My account</h3>
+                  <a v-if="is_mine" href="#!" class="btn btn-info mt-2 text-dark" @click="changePassWord">비밀번호 변경</a>
                 </div>
               </div>
             </div>
@@ -187,6 +188,9 @@ export default {
     },
     openFileInput() {
       this.$refs.fileInput.click()
+    },
+    changePassWord() {
+      this.$router.push({name:'ChangePassWordView', params:'username'})
     }
   }
 }

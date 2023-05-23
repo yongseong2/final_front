@@ -13,6 +13,9 @@ import SignUpView from '@/views/SignUpView'
 import CommuityUpdateView from '@/views/CommuityUpdateView'
 import CommunityCreateView from '@/views/CommunityCreateView'
 import MovieDetailView from '@/views/MovieDetailView'
+import SearchView from '@/views/SearchView'
+import ChangePassWordView from '@/views/ChangePassWordView'
+
 
 
 
@@ -75,8 +78,16 @@ const routes = [
     name: 'MovieDetailView',
     component: MovieDetailView
   },
-
-
+  {
+    path: '/search/:searchdata',
+    name: 'SearchView',
+    component: SearchView
+  },
+  {
+    path: '/changepassword/:username',
+    name: 'ChangePassWordView',
+    component: ChangePassWordView
+  },
 ]
 
 const router = new VueRouter({
@@ -85,6 +96,7 @@ const router = new VueRouter({
   routes
 })
 
+// 로그인 후에 들어갈 필요가 없는 페이지
 router.beforeEach((to, from, next)=> {
   const isLoggedIn = store.getters.isLogin
   if (isLoggedIn && (
@@ -97,6 +109,7 @@ router.beforeEach((to, from, next)=> {
   }
 })
 
+// 로그인 후에 들어갈 수 있는 페이지
 router.beforeEach((to, from, next) => {
   const isLoggedIn = store.getters.isLogin;
   const requiresAuth = [
@@ -105,7 +118,9 @@ router.beforeEach((to, from, next) => {
     'CommunityView',
     'CommunityDetailView',
     'ProfileView',
-    'CommuityUpdateView'
+    'CommuityUpdateView',
+    'SearchView',
+    'ChangePassWordView',
   ];
 
   if (requiresAuth.includes(to.name) && !isLoggedIn) {

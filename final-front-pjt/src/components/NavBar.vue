@@ -4,6 +4,13 @@
         <router-link :to="{name:'MainView'}" class="navbar-brand" href="#">
           <img src="@/assets/Logo_final.png" alt="Bootstrap" width="189" height="36">
         </router-link>
+        
+        <form class="d-flex" role="search">
+          <!-- 이것도 안만듬 아직 -->
+          <input v-model="searchData" class="form-control me-2" type="search" placeholder="영화제목을 입력하세요" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Search</button>
+        </form>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,9 +19,6 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <router-link :class="{'nav-link': true, 'active': $route.name === 'TodayMovieView'}" :to="{name:'TodayMovieView'}">Today's Movie</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link :class="{'nav-link': true, 'active': $route.name === 'MoviesView'}" :to="{name:'MoviesView'}">MOVIES</router-link>
             </li>
             <li class="nav-item">
               <router-link :class="{'nav-link': true, 'active': $route.name === 'CommunityView'}" :to="{name:'CommunityView'}">COMMUNITY</router-link>
@@ -49,6 +53,11 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('logOut')
+    }
+  },
+  data() {
+    return {
+      searchData: '',
     }
   },
   computed: {
