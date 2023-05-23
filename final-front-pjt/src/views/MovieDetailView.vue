@@ -5,28 +5,34 @@
       <div class="movie-img" :style="{ 'background-image': `url(${this.poster})` }">
         <div class="movie-info">
             <span class="movie-name">{{ movie.title }}</span>
-            <br>(년도)
+            <br>{{ movie.release_date}}
           <div class="post-line">
               <span>관람객 평점 :</span> {{ movie.vote_average }}
               <br>
-              <span>관람객 평점 :</span> {{ movie.vote_average }}
+              <span>MOVIE 101 유저 평점 :</span> {{ movie.rate_avg }}
+          </div>
+          <div class="d-flex justify-content-center">
+            <YoutubeContent
+            :movie-title="movie.title"
+            />
           </div>
           <div class="post-line">
-            <span>Director:</span>&nbsp; Ayan Mukerji<br/>
-            <span>Actor:</span>&nbsp; Amitabh Bachchan, Ranbir Kapoor, Alia Bhatt, Mouni Roy <br/>  
-            <span>Official Site :</span>&nbsp; N/A <br/>
+            <span>Director:</span> {{ director }}<br/>
+            <span>Actor:</span>{{ actors[0] }}, {{ actors[1] }}, {{ actors[2] }}<br/>  
           </div>
 
-          <div class="d-flex justify-content-center">
-            <YoutubeContent/>
-          </div>
-          <br>
+          <div>
             {{ movie.overview }}
+          </div>
       </div>
   </div>
 
       <div class="d-flex justify-content-center">
-        asdasddsaasdassadasasd
+        <ReviewList
+        :movie-review="movie.review_set"
+        
+        
+        />
       </div>
   </section>
 
@@ -37,26 +43,29 @@
 
 import axios from 'axios'
 import YoutubeContent from '@/components/Movies/YoutubeContent.vue'
+import ReviewList from '@/components/Movies/ReviewList.vue'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name:'MovieDetailView',
   components: {
-    YoutubeContent
+    YoutubeContent,
+    ReviewList,
   },
   data() {
     return {
       movie: '',
+      director: '',
+      actors: [],
     }
   },
-
   computed: {
     poster() {
       if (this.movie && this.movie.poster_path) {
         return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`
       }
       return 'https://t1.daumcdn.net/cfile/tistory/233F6D505786DA870A'
-    }
+    },
   },
 
   created(){
@@ -70,13 +79,19 @@ export default {
       })
       .then(res=>{
         this.movie = res.data
-        console.log(this.movie)
+        const directorsString = res.data.directors
+        const directorsArray = directorsString.slice(1, -1).split(", ");
+        const firstDirector = directorsArray[0].replace(/'/g, ""); // 따옴표 제거
+        this.director = firstDirector
 
+        const actorsString = res.data.casts;
+        const actorsArray = actorsString.slice(1, -1).split(", ");
+        this.actors = actorsArray.map(actor => actor.replace(/'/g, ""))
       })
       .catch(err=>{
         console.log(err)
       })
-    }
+    },
   }
 }
 </script>
@@ -85,7 +100,7 @@ export default {
 
 .movie-details {  
     box-sizing: border-box;  
-    font-size: 1.4rem; color: #fff; 
+    font-size: 1rem; color: #fff; 
     line-height: 1.6em; 
     padding: 0 0 30px; margin: auto; 
     text-align: start; zoom: 1;
@@ -99,20 +114,8 @@ export default {
   width: 612px;
   height: 919px;
   border-radius: 10px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0) 10%,
-    rgba(255, 255, 255, 0) 25%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 50%,
-    rgba(255, 255, 255, 0) 75%,
-    rgba(255, 255, 255, 0) 100%,
-  );
   }
 
-/* .movie-details img { 
-    border-radius: 0 0 20px 20px; 
-    height: 700px; } */
 
 .movie-img::before {
   content: "";
@@ -146,7 +149,7 @@ export default {
 
 .about-movie { 
     color: #d9d9d9; 
-    font-size: 1.3rem; }
+    font-size: 1rem; }
 
 
 .movie-details .post-line { 
