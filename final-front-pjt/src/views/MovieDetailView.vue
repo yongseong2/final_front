@@ -33,6 +33,7 @@
           <div class="post-line">
             <ReviewList
             :movie-review="movie.review_set"
+            :get-movie-detail="getMovieDetail"
             />
           </div>
         </div>

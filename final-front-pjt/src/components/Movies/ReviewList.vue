@@ -7,6 +7,12 @@
           v-for="review in movieReview"
           :key="review.id"
           :review="review"
+          :get-movie-detail="getMovieDetail"
+          :rate="review.rate"
+          :review-id="review.id"
+
+          @review-deleted="getMovieDetail"
+          @review-updated="getMovieDetail"
         />
       </ol>
 
@@ -54,7 +60,8 @@ export default {
     ReviewListItem
   },
   props: {
-    movieReview: Array
+    movieReview: Array,
+    getMovieDetail: Function,
   },
   computed: {
     token() {
@@ -72,22 +79,32 @@ export default {
       this.rate = 0;
     },
     submitReview() {
+      if (this.review === '') {
+        alert('리뷰를 작성해주세요.')
+        return
+      }
+      else if(this.rate === '' || isNaN(this.rate) || this.rate < 0 || this.rate > 5) {
+        alert('0부터 5까지의 숫자로 평점을 입력해주세요.')
+        return
+      }
+
+
       const movieId = this.$route.params.movieid
       const reviewData = {
         review: this.review,
         rate: this.rate
       }
-
       axios({
-        methods:'post',
+        method:'post',
         url:`${API_URL}/movies/${movieId}/review/`,
         headers:{
           Authorization:`Token ${this.token}`
         },
         data: reviewData,
       })
-      .then((res)=>{
-        console.log(res)
+      .then(()=>{
+        this.closeModal()
+        this.getMovieDetail()
       })
       .catch((err)=>{
         console.log(err)

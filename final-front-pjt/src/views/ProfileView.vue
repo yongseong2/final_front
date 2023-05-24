@@ -88,6 +88,12 @@
                             {{ comment.content }}
                             </li>
                         </ul>
+                        <p class="form-control-label" for="input-username">작성한 리뷰</p>
+                        <ul>
+                          <li v-for="review in reviews" :key="review.id">
+                            {{review.review}}
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -119,6 +125,7 @@ export default {
       is_mine: null,
       background_img: null,
       file: '',
+      reviews: [],
       
     }
   },
@@ -150,6 +157,7 @@ export default {
           this.date_joined = res.data.date_joined
           this.is_mine = res.data.is_mine
           this.background_img = res.data.background_img
+          this.reviews = res.data.reviews
         })
         .catch(() => {
           alert('로그인이 필요한 서비스입니다.')

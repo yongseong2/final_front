@@ -121,6 +121,7 @@ router.beforeEach((to, from, next) => {
     'CommuityUpdateView',
     'SearchView',
     'ChangePassWordView',
+    'MovieDetailView',
   ];
 
   if (requiresAuth.includes(to.name) && !isLoggedIn) {

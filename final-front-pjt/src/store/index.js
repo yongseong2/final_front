@@ -98,8 +98,6 @@ export default new Vuex.Store({
       const username = payload.username
       const password = payload.password
 
-      context.commit('SAVE_LOGINED', username)
-
       axios({
         method:'post',
         url: `${API_URL}/accounts/login/`,
@@ -109,6 +107,7 @@ export default new Vuex.Store({
       })
       .then(res=> {
         context.commit('SAVE_TOKEN', res.data.key)
+        context.commit('SAVE_LOGINED', username)
         // context.commit('SAVE_USERNAME',)
       })
       .catch(err=>{
