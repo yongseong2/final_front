@@ -15,6 +15,8 @@ import CommunityCreateView from '@/views/CommunityCreateView'
 import MovieDetailView from '@/views/MovieDetailView'
 import SearchView from '@/views/SearchView'
 import ChangePassWordView from '@/views/ChangePassWordView'
+import MovieChallengeView from '@/views/MovieChallengeView'
+
 import NotFound404 from '@/views/NotFound404'
 
 
@@ -89,6 +91,11 @@ const routes = [
     path: '/changepassword/:username',
     name: 'ChangePassWordView',
     component: ChangePassWordView
+  },
+  {
+    path: '/moviechallenge',
+    name: 'MovieChallengeView',
+    component: MovieChallengeView
   },
   {
     path: '*',
