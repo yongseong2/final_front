@@ -2,7 +2,7 @@
 
   <li class="ordered-nav--link">
     <div>
-      <a v-bind:href="`http://127.0.0.1:8000/profile/${review.username}`">{{ review.username }}</a>
+      <router-link :to="{ name: 'ProfileView', params: { username: review.username } }">{{ review.username }}</router-link>
       <div>{{ formatDateTime(review.created_at) }}</div>
     </div><br>
 

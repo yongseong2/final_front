@@ -200,15 +200,15 @@ export default {
       this.$router.push({name:'ChangePassWordView', params:'username'})
     }
   },
-  beforeRouteUpdate(to, from, next) {
-    this.username = to.params.username
-    next()
-  },
-  watch: {
-    articles() {
-      this.getProfile()
-    }
-  }
+  // beforeRouteUpdate(to, from, next) {
+  //   this.username = to.params.username
+  //   next()
+  // },
+  // watch: {
+  //   articles() {
+  //     this.getProfile()
+  //   }
+  // }
 }
 </script>
 
