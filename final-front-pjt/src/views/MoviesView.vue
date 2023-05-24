@@ -1,5 +1,5 @@
 <template>
-  <div id="movie" class="mt-3">
+  <div id="movie" class="mt-5">
     <h1 class="movieTitle">POPULAR MOVIES</h1>
     <PopularMovie/>
 

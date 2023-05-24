@@ -10,13 +10,11 @@
     </div>
 
 
+    <div class="mx-5">
     <div id="movie" class="mt-5 text-center d-flex justift-content-center row">
     <MoviePickButtons/>
-    <h1 class="movieTitle mt-3">POPULAR MOVIES</h1>
-    <PopularMovie/>
-
-    <h1 class="movieTitle mt-3">NOW PLAYING</h1>
-    <NowPlaying/>
+      <NowPlaying/>
+    </div>
     </div>
   </div>
 </template>
@@ -24,7 +22,7 @@
 
 <script>
 import Splitting from 'splitting'
-import PopularMovie from '@/components/Movies/PopularMovie.vue'
+// import PopularMovie from '@/components/Movies/PopularMovie.vue'
 import NowPlaying from '@/components/Movies/NowPlaying.vue'
 import MoviePickButtons from '@/components/Movies/MoviePickButtons.vue'
 
@@ -32,7 +30,7 @@ import MoviePickButtons from '@/components/Movies/MoviePickButtons.vue'
 export default {
   name:'TodayMovieView',
   components: {
-    PopularMovie,
+    // PopularMovie,
     NowPlaying,
     MoviePickButtons
 

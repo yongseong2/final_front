@@ -9,7 +9,8 @@ html, body {
 }
 
 .container {
-  max-height: 70vh;
+  margin-top: 60px;
+  max-height: 30vh;
   position: relative;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
@@ -96,6 +97,6 @@ html, body {
 
 .subtext {
   font-weight: 700;
-  font-size: calc(0.8rem + 3vmin);
+  font-size: calc(0.3rem + 3vmin);
   text-align: center;
 }
