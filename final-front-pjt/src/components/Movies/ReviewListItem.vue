@@ -1,15 +1,20 @@
 <template>
+
   <li class="ordered-nav--link">
+    <div>
+      <a v-bind:href="`http://127.0.0.1:8000/profile/${review.username}`">{{ review.username }}</a>
+      <div>{{ formatDateTime(review.created_at) }}</div>
+    </div><br>
 
-    <div class="d-flex">
-      <div>작성자: {{ review.username }}</div>
-      <div class="ms-5">작성 시간: {{ formatDateTime(review.created_at) }}</div>
+    <div>평점: {{rate}}점</div><br>
+    <div>{{ review.review }}</div>
+    
+    <div style = "display:flex; justify-content:flex-end">
+      <button v-if="ismine" @click="openModal" class="btn btn-outline-light btn-space mt-3 mx-2">수정</button>
+      <button v-if="ismine" @click="deleteReviews" class="btn btn-outline-danger mt-3 ">삭제</button>
     </div>
-
-    <h5>{{ review.review }}</h5>
-    <div>평점: {{rate}}</div>
-    <button v-if="ismine" @click="openModal" class="btn btn-light mt-3 mb-3">리뷰수정하기</button>
-    <button v-if="ismine" @click="deleteReviews" class="btn btn-light mt-3 mb-3 ms-3">리뷰삭제하기</button>
+    <hr>
+    
 
 
     <!-- 수정모달 -->
@@ -48,7 +53,6 @@ export default {
       modalOpen: false,
       updatedRate: this.rate,
       ismine: null,
-
     }
   },
   created() {
@@ -149,8 +153,9 @@ export default {
 
     }
 
-  }
-}
+  },
+};
+
 </script>
 
 <style lang='scss'>

@@ -29,7 +29,7 @@
 
       <div class="movie-img">
         <div class="movie-info">
-            <span class="movie-name">REVIEWS</span>
+            <span class="movie-name">REVIEWS</span> 
           <div class="post-line">
             <ReviewList
             :movie-review="movie.review_set"

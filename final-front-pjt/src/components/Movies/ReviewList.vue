@@ -1,6 +1,9 @@
 <template>
   <div>
-    <button @click="openModal" class="btn btn-light mt-3 mb-3">리뷰작성하기</button>
+    <div style = "display:flex; justify-content:flex-end">
+      <button @click="openModal" class="btn btn-light mt-3 mb-3">리뷰작성하기</button>
+    </div>
+    
     <div class="review-list-container">
       <ol class="ordered-nav">
         <ReviewListItem
@@ -122,6 +125,7 @@ export default {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
+  background-color: rgba(0,0,0,0.2);
 }
 
 .review-list-container::-webkit-scrollbar {
