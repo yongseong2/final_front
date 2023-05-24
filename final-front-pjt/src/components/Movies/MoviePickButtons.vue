@@ -2,7 +2,7 @@
   <div class="button-container">
     <button @click="goToRandomDetail" type="button" class="btn btn-outline-light">MOVIE 101의 랜덤영화 추천 받기</button>
     <button @click="goToMovieChallenge" type="button" class="btn btn-outline-warning">나만의 영화 챌린지</button>
-    <button type="button" class="btn btn-outline-success">나만의 영화 배우 챌린지</button>
+    <button @click="goToActorChallenge" type="button" class="btn btn-outline-success">나만의 영화 배우 챌린지</button>
   </div>
 </template>
 
@@ -22,9 +22,18 @@ export default {
     // token() {
     //   return this.$store.state.token
     // }
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
   },
   methods: {
     goToRandomDetail() {
+      if (this.isLogin === false) {
+        alert('로그인이 필요한 서비스입니다.')
+        this.$router.push({name:'LoginView'})
+        return
+      }
+
       axios({
         method:'get',
         url:`${API_URL}/today/random/`,
@@ -38,8 +47,23 @@ export default {
       })
     },
     goToMovieChallenge() {
+      if (this.isLogin === false) {
+        alert('로그인이 필요한 서비스입니다.')
+        this.$router.push({name:'LoginView'})
+        return
+      }
+
       this.$router.push({name:'MovieChallengeView'})
       
+    },
+    goToActorChallenge() {
+      if (this.isLogin === false) {
+        alert('로그인이 필요한 서비스입니다.')
+        this.$router.push({name:'LoginView'})
+        return
+      }
+
+      this.$router.push({name:'ActorsChallengeView'})
     }
   }
 

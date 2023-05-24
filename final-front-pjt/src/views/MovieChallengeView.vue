@@ -5,7 +5,7 @@
       <h1>더 좋아하는 영화를 선택해 주세요</h1>
       <hr>
       <div v-if="!left" class="text-center">
-        <button @click="next">{{ roundNum }}강 시작하기</button>
+        <button class="btn btn-outline-light" @click="next">{{ roundNum }}강 시작하기</button>
       </div>
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
@@ -52,6 +52,7 @@ export default {
       left: null,
       right: null,
       finishFlag: false,
+      winner: null,
     }
   },
   methods: {
@@ -78,6 +79,8 @@ export default {
       this.next()
     },
     winnerChoice() {
+      this.winner = this.left
+      console.log(this.winner)
     },
     next() {
       this.left = this.current_round.pop()
@@ -98,6 +101,9 @@ export default {
       if(this.next_round.length === 0 && this.current_round.length === 1 && !this.left && !this.right) {
         this.left = this.current_round.pop()
         this.finishFlag = true
+        // if (this.current_round.length === 1) {
+        //   console.log(this.current_round)
+        // }
       }
     }
   },

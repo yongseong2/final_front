@@ -16,6 +16,8 @@ import MovieDetailView from '@/views/MovieDetailView'
 import SearchView from '@/views/SearchView'
 import ChangePassWordView from '@/views/ChangePassWordView'
 import MovieChallengeView from '@/views/MovieChallengeView'
+import ActorsChallengeView from '@/views/ActorsChallengeView'
+
 
 import NotFound404 from '@/views/NotFound404'
 
@@ -98,6 +100,11 @@ const routes = [
     component: MovieChallengeView
   },
   {
+    path: '/actorchallenge',
+    name: 'ActorsChallengeView',
+    component: ActorsChallengeView
+  },
+  {
     path: '*',
     name: 'NotFound404',
     component: NotFound404
@@ -137,6 +144,8 @@ router.beforeEach((to, from, next) => {
     'SearchView',
     'ChangePassWordView',
     'MovieDetailView',
+    'MovieChallengeView',
+    'ActorChallengeView',
   ];
 
   if (requiresAuth.includes(to.name) && !isLoggedIn) {
