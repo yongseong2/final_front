@@ -9,8 +9,10 @@
       </div>
     </div>
 
+
     <div id="movie" class="mt-5 text-center d-flex justift-content-center row">
-    <h1 class="movieTitle">POPULAR MOVIES</h1>
+    <MoviePickButtons/>
+    <h1 class="movieTitle mt-3">POPULAR MOVIES</h1>
     <PopularMovie/>
 
     <h1 class="movieTitle mt-3">NOW PLAYING</h1>
@@ -21,16 +23,18 @@
 
 
 <script>
-import Splitting from 'splitting';
+import Splitting from 'splitting'
 import PopularMovie from '@/components/Movies/PopularMovie.vue'
-import NowPlaying from '@/components/Movies/NowPlaying.vue';
+import NowPlaying from '@/components/Movies/NowPlaying.vue'
+import MoviePickButtons from '@/components/Movies/MoviePickButtons.vue'
 
 
 export default {
   name:'TodayMovieView',
   components: {
     PopularMovie,
-    NowPlaying
+    NowPlaying,
+    MoviePickButtons
 
   },
   mounted() {

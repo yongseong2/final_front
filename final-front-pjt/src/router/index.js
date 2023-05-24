@@ -15,6 +15,8 @@ import CommunityCreateView from '@/views/CommunityCreateView'
 import MovieDetailView from '@/views/MovieDetailView'
 import SearchView from '@/views/SearchView'
 import ChangePassWordView from '@/views/ChangePassWordView'
+import NotFound404 from '@/views/NotFound404'
+
 
 
 
@@ -88,6 +90,12 @@ const routes = [
     name: 'ChangePassWordView',
     component: ChangePassWordView
   },
+  {
+    path: '*',
+    name: 'NotFound404',
+    component: NotFound404
+  },
+
 ]
 
 const router = new VueRouter({
