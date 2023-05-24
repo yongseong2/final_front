@@ -5,9 +5,8 @@
           <img src="@/assets/Logo_final.png" alt="Bootstrap" width="189" height="36">
         </router-link>
         
-        <form class="d-flex" role="search">
-          <!-- 이것도 안만듬 아직 -->
-          <input v-model="searchData" class="form-control me-2" type="search" placeholder="영화제목을 입력하세요" aria-label="Search">
+        <form class="d-flex" role="search" @submit.prevent="goToSearch">
+          <input v-model.trim="searchData" class="form-control me-2" type="search" placeholder="영화제목을 입력하세요" aria-label="Search">
           <button class="btn btn-outline-light" type="submit">Search</button>
         </form>
 
@@ -50,14 +49,28 @@
 <script>
 export default {
   name:'NavBar',
-  methods: {
-    logOut() {
-      this.$store.dispatch('logOut')
-    }
-  },
   data() {
     return {
       searchData: '',
+    }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('logOut')
+    },
+    goToSearch() {
+      if (this.searchData === '') {
+        alert('영화제목을 입력하세요.')
+        return
+      }
+
+
+      this.$router.push({
+        name:'SearchView', 
+        params:{searchdata:this.searchData}
+        })
+        .catch(()=> {
+        })
     }
   },
   computed: {

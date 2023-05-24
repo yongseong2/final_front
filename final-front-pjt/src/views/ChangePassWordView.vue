@@ -33,8 +33,8 @@
 
 <script>
 
-// import axios from 'axios'
-// const API_URL = 'http://127.0.0.1:8000'
+import axios from 'axios'
+const API_URL = 'http://127.0.0.1:8000'
 export default {
   name:'ChangePassWordView',
   computed: {
@@ -44,22 +44,34 @@ export default {
   },
   data() {
     return {
-      username: null,
       password1: null,
       password2: null,
-
     }
   },
   methods:{
     changePassWord() {
-      alert('하하하하하아직안만듬')
-      // const username = this.$route.params.username
-
-
-      // axios({
-      //   method:'post'
-      //   url: ``
-      // })
+      axios({
+        method:'post',
+        url: `${API_URL}/accounts/password/change/`,
+        data: {
+          new_password1: this.password1,
+          new_password2: this.password2,
+        },
+        headers: {
+          Authorization: `Token ${this.token}`
+        }
+      })
+      .then(res=>{
+        console.log(res)
+        alert('비밀번호가 변경되었습니다. 다시 로그인 해주세요')
+        this.logOut()
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    },
+    logOut() {
+      this.$store.dispatch('logOut')
     }
   }
 

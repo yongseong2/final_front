@@ -126,7 +126,6 @@ export default {
       background_img: null,
       file: '',
       reviews: [],
-      
     }
   },
   computed: {
@@ -199,6 +198,15 @@ export default {
     },
     changePassWord() {
       this.$router.push({name:'ChangePassWordView', params:'username'})
+    }
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.username = to.params.username
+    next()
+  },
+  watch: {
+    articles() {
+      this.getProfile()
     }
   }
 }
