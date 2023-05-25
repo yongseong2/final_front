@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-if="movie" class="mt-3">
-      <div class="card">
-        <img :src="poster" alt="" class="card-img-top">
-        <div class="card-body">
+    <div v-if="movie" class="mt-3 d-flex justify-content-center">
+      <div id="challenge" class="card">
+        <img :src="poster" alt="" width="100%" height="100%" class="card-img-top">
+        <div class="card-body bg-dark text-light">
           <h5 class="card-title">{{ movie.title }}</h5>
           <p class="card-text">{{ movie.overview }}</p>
         </div>
@@ -58,7 +58,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+#challenge {
+  width: 60%;
+}
 
 
 .movie-img-result{
