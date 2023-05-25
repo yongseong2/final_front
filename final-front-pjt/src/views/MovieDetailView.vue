@@ -149,7 +149,6 @@ export default {
   z-index: 1;
   margin: 20px;
   letter-spacing: 1.2px;
-  
 }
 
 
