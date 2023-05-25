@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-if="movie" class="card" @mouseover="setOpacity(0.6)" @mouseout="setOpacity(1)">
-      <img class="card-img-top" :src="posterUrl" width="180" height="530" alt="" @click="select">
+    <div v-if="movie" class="card bg-dark" @mouseover="setOpacity(0.6)" @mouseout="setOpacity(1)">
+      <img class="card-img-top object-fit-cover" :src="posterUrl" width="100%" height="100%" alt="" @click="select">
       <!-- <button @click="select">선택</button> -->
-      <div class="card-body text-white bg-dark">
+      <div class="card-body text-white bg-dark text-center">
         <h5 class="card-title">{{ movie.title }}</h5>
       </div>
     </div>
@@ -70,7 +70,7 @@ export default {
 <style scoped>
 
 .card {
-  margin: 30px
+  width: 60%
 }
 
 </style>
