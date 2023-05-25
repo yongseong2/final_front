@@ -8,8 +8,14 @@
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello {{ username }}</h1>
+
+            <a @click="goBack" class="btn btn-info mt-2">뒤로가기</a >
+            <h1 v-if="is_mine" class="display-2 text-white">Hello {{ username }}</h1>
+            <h1 v-if="!is_mine" class="display-2 text-white">{{ username }}님의 프로필</h1>
+
+
             <a v-if="is_mine" href="#!" class="btn btn-info" @click="openFileInput">프로필 사진 수정</a>
+
             <input ref="fileInput" type="file" style="display: none" @change="uploadImage" accept="image/*" />
           </div>
         </div>
@@ -137,6 +143,10 @@ export default {
     this.getProfile()
   },
   methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
+
     getProfile() {
       const username = this.$route.params.username
       axios({
@@ -200,13 +210,15 @@ export default {
       this.$router.push({name:'ChangePassWordView', params:'username'})
     }
   },
-  // beforeRouteUpdate(to, from, next) {
-  //   this.username = to.params.username
-  //   next()
-  // },
+  beforeRouteUpdate(to, from, next) {
+    this.username = to.params.username
+    next()
+    this.$router.go(0)
+  },
   // watch: {
   //   articles() {
-  //     this.getProfile()
+  //     this.articles
+
   //   }
   // }
 }

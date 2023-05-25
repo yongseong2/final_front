@@ -139,9 +139,19 @@ export default {
 
 .movie-info {
   position: relative;
+  height: 900px;
   z-index: 1;
   margin: 20px;
   letter-spacing: 1.2px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  /* background-color: rgba(0,0,0,0.2); */
+}
+
+.movie-info::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
 }
 
 #review-list{
@@ -160,7 +170,7 @@ export default {
 
 .movie-info .movie-name {  
     font-size: 2.5rem; font-weight: 700; 
-    line-height: 30px;  }
+    line-height: 50px;  }
 
 .about-movie { 
     color: #d9d9d9; 
