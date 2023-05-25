@@ -1,19 +1,23 @@
 <template>
-  <div v-if="actor" class="card" @mouseover="setOpacity(0.6)" @mouseout="setOpacity(1)">
-    <img class="card-img-top" :src="posterUrl" width="180" height="530" alt="" @click="select">
+<div>
+  <div v-if="actor" class="card bg-dark" @mouseover="setOpacity(0.6)" @mouseout="setOpacity(1)">
+    <img class="card-img-top object-fit-cover" :src="posterUrl" width="100%" height="100%" alt="" @click="select">
     <!-- <button @click="select">선택</button> -->
-    <div class="card-body text-white bg-dark">
+    <div class="card-body text-white bg-dark text-center">
       <h5 class="card-title">{{ actor.name }}</h5>
-      <p class="card-text text-end"></p>
     </div>
+  </div>
+  <div class="justify-content-center d-flex">
     <button class="btn btn-outline-success" @click="select">{{ actor.name }} 배우가 나온 추천 영화</button>
+  </div>
     <div class="bg-dark">
       <ChallengeResultActor
       v-if='winner'
       :winner='winner'
       />
     </div>
-  </div>
+
+</div>
 </template>
 
 <script>
@@ -66,7 +70,7 @@ export default {
 <style scoped>
 
 .card {
-  margin: 30px
+  width: 60%
 }
 
 </style>

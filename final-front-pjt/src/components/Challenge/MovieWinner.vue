@@ -1,18 +1,22 @@
 <template>
-  <div v-if="movie" class="card" @mouseover="setOpacity(0.6)" @mouseout="setOpacity(1)">
-    <img class="card-img-top" :src="posterUrl" width="180" height="530" alt="" @click="select">
-    <!-- <button @click="select">선택</button> -->
-    <div class="card-body text-white bg-dark">
-      <h5 class="card-title">{{ movie.title }}</h5>
-      <p class="card-text text-end"></p>
+  <div>
+    <div v-if="movie" class="card" @mouseover="setOpacity(0.6)" @mouseout="setOpacity(1)">
+      <img class="card-img-top" :src="posterUrl" width="180" height="530" alt="" @click="select">
+      <!-- <button @click="select">선택</button> -->
+      <div class="card-body text-white bg-dark">
+        <h5 class="card-title">{{ movie.title }}</h5>
+      </div>
     </div>
-    <button class="btn btn-outline-warning text-dark" @click="select">{{ movie.title }} 추천 영화도 받아보세요!</button>
+    <div class="justify-content-center d-flex">
+    <button class="btn btn-outline-success" @click="select">{{ movie.title }}의 추천 영화</button>
+  </div>
     <div class="bg-dark">
       <ChallengeResult
       v-if='winner'
       :winner='winner'
       />
     </div>
+
   </div>
 </template>
 

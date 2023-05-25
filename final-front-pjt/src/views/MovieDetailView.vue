@@ -11,17 +11,22 @@
               <br>
               <span>MOVIE 101 유저 평점 :</span> {{ movie.rate_avg }}
           </div>
-          <div class="d-flex justify-content-center">
-            <!-- <YoutubeContent
+          <div class="d-flex justify-content-center row mt-1">
+            <YoutubeContent
             :movie-title="movie.title"
-            /> -->
-            <img src="@/assets/test.png" alt="">
+            />
+            <!-- <img src="@/assets/test.png" alt=""> -->
           </div>
-          <div class="post-line">
+          <div class="post-line mt-3">
+            <h4>출연진</h4>
+            <hr>
             <span>Director:</span> {{ director }}<br/>
             <span>Actor:</span>{{ actors[0] }}, {{ actors[1] }}, {{ actors[2] }}<br/>  
           </div>
-          <div>
+          <br>
+          <div v-if="movie.overview">
+            <h4>줄거리</h4> 
+            <hr>
             {{ movie.overview }}
           </div>
         </div>
@@ -45,14 +50,14 @@
 <script>
 
 import axios from 'axios'
-// import YoutubeContent from '@/components/Movies/YoutubeContent.vue'
+import YoutubeContent from '@/components/Movies/YoutubeContent.vue'
 import ReviewList from '@/components/Movies/ReviewList.vue'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name:'MovieDetailView',
   components: {
-    // YoutubeContent,
+    YoutubeContent,
     ReviewList,
   },
   data() {

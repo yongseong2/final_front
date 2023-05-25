@@ -1,6 +1,6 @@
 <template>
   <div v-if="actor" class="card" @mouseover="setOpacity(0.6)" @mouseout="setOpacity(1)">
-    <img class="card-img-top" :src="posterUrl" width="180" height="530" alt="" @click="select">
+    <img class="card-img-top object-fit-cover" :src="posterUrl" width="300" height="400" alt="" @click="select">
     <!-- <button @click="select">선택</button> -->
     <div class="card-body text-white bg-dark">
       <h5 class="card-title">{{ actor.name }}</h5>
@@ -54,7 +54,7 @@ export default {
 <style scoped>
 
 .card {
-  margin: 30px
+  width: 60%
 }
 
 </style>

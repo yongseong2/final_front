@@ -1,8 +1,8 @@
 <template>
   <div class="button-container">
-    <button @click="goToRandomDetail" type="button" class="btn btn-outline-light">MOVIE 101의 랜덤영화 추천 받기</button>
-    <button @click="goToMovieChallenge" type="button" class="btn btn-outline-warning">나만의 영화 챌린지</button>
-    <button @click="goToActorChallenge" type="button" class="btn btn-outline-success">나만의 영화 배우 챌린지</button>
+    <button @click="goToRandomDetail" type="button" class="btn btn-outline-light fs-3">MOVIE 101만의 랜덤영화</button>
+    <button @click="goToMovieChallenge" type="button" class="btn btn-outline-warning fs-3">영화 월드컵 32강</button>
+    <button @click="goToActorChallenge" type="button" class="btn btn-outline-success fs-3">배우 월드컵 32강</button>
   </div>
 </template>
 
