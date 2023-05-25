@@ -17,9 +17,6 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link :class="{'nav-link': true, 'active': $route.name === 'TodayMovieView'}" :to="{name:'TodayMovieView'}">Today's Movie</router-link>
-            </li>
-            <li class="nav-item">
               <router-link :class="{'nav-link': true, 'active': $route.name === 'CommunityView'}" :to="{name:'CommunityView'}">COMMUNITY</router-link>
             </li>
             <li v-if="!isLogin"><router-link :class="{'nav-link': true, 'active': $route.name === 'LoginView'}" :to="{name:'LoginView'}">LOGIN</router-link></li>

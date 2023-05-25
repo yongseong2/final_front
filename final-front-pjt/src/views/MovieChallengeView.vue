@@ -27,7 +27,8 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 mb-4 offset-md-3 offset-lg-3">
           <div>
-            <MovieChallenge id="winner" :movie="left" @choiceEvent="winnerChoice"/>
+            <MovieWinner id="winner" :winner="winner" :movie="left" @choiceEvent="winnerChoice"/>
+            
           </div>
         </div>
       </div>
@@ -37,12 +38,15 @@
 <script>
 import axios from 'axios'
 import MovieChallenge from '@/components/Challenge/MovieChallenge.vue'
+import MovieWinner from '@/components/Challenge/MovieWinner.vue'
+
 
 const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'MovieChallengeView',
   components: {
-    MovieChallenge
+    MovieChallenge,
+    MovieWinner,
   },
   data() {
     return {
@@ -80,7 +84,7 @@ export default {
     },
     winnerChoice() {
       this.winner = this.left
-      console.log(this.winner)
+      this.finishFlag = true
     },
     next() {
       this.left = this.current_round.pop()
@@ -101,15 +105,12 @@ export default {
       if(this.next_round.length === 0 && this.current_round.length === 1 && !this.left && !this.right) {
         this.left = this.current_round.pop()
         this.finishFlag = true
-        // if (this.current_round.length === 1) {
-        //   console.log(this.current_round)
-        // }
       }
     }
   },
   created() {
     this.getMovieChallengeList()
-  }
+  },
 }
 </script>
 

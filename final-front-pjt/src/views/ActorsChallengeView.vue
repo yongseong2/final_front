@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 mb-4 offset-md-3 offset-lg-3">
           <div>
-            <ActorChallenge id="winner" :actor="left" @choiceEvent="winnerChoice"/>
+            <ActorWinner id="winner" :winner="winner" :actor="left" @choiceEvent="winnerChoice"/>
           </div>
         </div>
       </div>
@@ -38,12 +38,14 @@
 <script>
 import axios from 'axios'
 import ActorChallenge from '@/components/Challenge/ActorChallenge.vue'
+import ActorWinner from '@/components/Challenge/ActorWinner.vue'
 
 const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'ActorChallengeView',
   components: {
-    ActorChallenge
+    ActorChallenge,
+    ActorWinner
   },
   data() {
     return {
@@ -81,7 +83,7 @@ export default {
     },
     winnerChoice() {
       this.winner = this.left
-      console.log(this.winner)
+      this.finishFlag = true
     },
     next() {
       this.left = this.current_round.pop()
